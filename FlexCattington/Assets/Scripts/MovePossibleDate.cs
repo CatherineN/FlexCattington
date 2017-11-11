@@ -20,12 +20,16 @@ public class MovePossibleDate : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        //Change direction based on the move int
         if (moveInt == 1)
             xPos -= 0.1f;
         else if (moveInt == 2)
             xPos += 0.1f;
+        //Set position to xpos
         transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
+        //Convert to camera space
         screenPoint = Camera.main.WorldToViewportPoint(transform.position);
+        //Screenwrap
         if (screenPoint.x < 0 || screenPoint.x > 1)
         {
             xPos = -xPos;
