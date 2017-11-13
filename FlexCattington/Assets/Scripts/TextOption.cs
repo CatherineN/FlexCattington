@@ -14,10 +14,16 @@ public class TextOption : MonoBehaviour {
     // Use this for initialization
     void Start () {
         gameObject.GetComponentInChildren<Text>().text = text;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void UpdateScore()
+    {
+        Debug.Log("score updating " + PlayerPrefs.GetInt("score"));
+        PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score") + relationshipEffect);
+    }
 }
