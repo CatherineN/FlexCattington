@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextOption : MonoBehaviour {
 
-    public string Text;//text to reply/do in response to the npc's text
+    public string text;//text to reply/do in response to the npc's text
 
     public GameObject resultNode; //where this specific option leads
 
@@ -12,7 +13,7 @@ public class TextOption : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        gameObject.GetComponentInChildren<Text>().text = text;
 	}
 	
 	// Update is called once per frame

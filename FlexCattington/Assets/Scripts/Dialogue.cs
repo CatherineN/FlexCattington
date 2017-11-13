@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour {
 
-    public List<TextNode> Nodes;
+    public List<Text> Nodes;
 
 	// Use this for initialization
 	void Start () {
