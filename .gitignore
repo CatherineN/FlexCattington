@@ -33,5 +33,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 FlexCattington/Library/
-FlexCattington/Temp/UnityTempFile-7939b4148a33cba4cb560aac5706b1fe
-FlexCattington/Temp/UnityLockfile
+FlexCattington/Temp/
