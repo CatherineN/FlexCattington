@@ -13,6 +13,8 @@ public class WaiterScript : MonoBehaviour {
     }
     private Transform waiterTrans;
     private States gameState;
+    
+    private bool leaving = false;
 	// Use this for initialization
 	void Start () {
         waiterTrans = gameObject.transform;
@@ -21,6 +23,15 @@ public class WaiterScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (leaving)
+        {
+            Leave();
+        }
 		
 	}
+    void Leave()
+    {
+        gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(-5, 0));
+        
+    }
 }
