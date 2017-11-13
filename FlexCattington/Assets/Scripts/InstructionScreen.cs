@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InstructionScreen : MonoBehaviour
 {
@@ -43,6 +44,6 @@ public class InstructionScreen : MonoBehaviour
 
     public void Play()
     {
-
+        SceneManager.LoadScene("Waldo");
     }
 }
