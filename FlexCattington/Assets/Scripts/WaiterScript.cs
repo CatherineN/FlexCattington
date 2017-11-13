@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaiterScript : MonoBehaviour {
 
+    public bool correctCoffee;
     public enum States
     {
         waiterApproach,
@@ -19,6 +20,7 @@ public class WaiterScript : MonoBehaviour {
 	void Start () {
         waiterTrans = gameObject.transform;
         gameState = States.waiterApproach;
+        correctCoffee = false;
 	}
 	
 	// Update is called once per frame
