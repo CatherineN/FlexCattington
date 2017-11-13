@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaiterScript : MonoBehaviour {
 
@@ -29,11 +30,19 @@ public class WaiterScript : MonoBehaviour {
         {
             Leave();
         }
+        CheckForTransition();
 		
 	}
     void Leave()
     {
         gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(-5, 0));
         
+    }
+    void CheckForTransition()
+    {
+        if (gameObject.transform.position.x < -13)
+        {
+            SceneManager.LoadScene("Conversation");
+        }
     }
 }
