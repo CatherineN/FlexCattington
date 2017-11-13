@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class TextNode : MonoBehaviour {
 
+    public string Text; //what npc says
+
+    public List<GameObject> Options; //ways you can respond to the text
+
 	// Use this for initialization
 	void Start () {
 		

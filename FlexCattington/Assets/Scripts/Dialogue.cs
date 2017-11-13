@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Dialogue : MonoBehaviour {
 
+    public List<TextNode> Nodes;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +15,15 @@ public class Dialogue : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void AddNode()
+    {
+
+    }
+
+    public void AddOption()
+    {
+
+    }
+
 }
