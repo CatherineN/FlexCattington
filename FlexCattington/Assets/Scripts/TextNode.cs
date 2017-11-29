@@ -6,6 +6,8 @@ public class TextNode : MonoBehaviour {
 
     public string Text; //what npc says
 
+    public int ID = -1; //identification of the node
+
     public List<GameObject> Options; //ways you can respond to the text
 
 	// Use this for initialization
@@ -17,4 +19,6 @@ public class TextNode : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    
 }

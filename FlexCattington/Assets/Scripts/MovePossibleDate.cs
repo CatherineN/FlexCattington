@@ -22,19 +22,23 @@ public class MovePossibleDate : MonoBehaviour {
     {
         //Change direction based on the move int
         if (moveInt == 1)
-            xPos -= 0.1f;
+            xPos -= 0.03f;
         else if (moveInt == 2)
-            xPos += 0.1f;
+            xPos += 0.03f;
         //Set position to xpos
         transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
         //Convert to camera space
         screenPoint = Camera.main.WorldToViewportPoint(transform.position);
         //Screenwrap
-        if (screenPoint.x < 0 || screenPoint.x > 1)
+        if(transform.tag != "Not Wrapping")
         {
-            xPos = -xPos;
-            transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
+            if (screenPoint.x < 0 || screenPoint.x > 1)
+            {
+                xPos = -xPos;
+                transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
+            }
         }
+        
             
     }
 }

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 75b0183b8a5d56646a162b3fadf4d028
-timeCreated: 1511735250
-licenseType: Free
+guid: 64d328727992f524795c9cbf4a619841
+timeCreated: 1510879351
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 4
@@ -36,10 +36,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 20, y: 20, z: 22, w: 20}
   spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
