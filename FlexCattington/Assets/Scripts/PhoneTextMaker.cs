@@ -21,8 +21,9 @@ public class PhoneTextMaker : MonoBehaviour
     private RectTransform r;
     public GameObject childText;
     public int right = 1;
+    public float heightDetermined;
 
-	void Start ()
+	void Awake ()
     {
         t = childText.GetComponent<Text>();
         r = gameObject.GetComponent<RectTransform>();
@@ -41,11 +42,11 @@ public class PhoneTextMaker : MonoBehaviour
         int characters = text.Length;
 
         // calculate width of text
-        float width = characters * 8 * right + 22;
-        float x = 125 - (characters * 4) * right;
+        float width = characters * 8 + 22;
+        float x = (125 - (characters * 4)) * right;
         if (width > 184)
         {
-            width = 184 * right;
+            width = 184;
             x = 48 * right;
         }
 
@@ -58,5 +59,6 @@ public class PhoneTextMaker : MonoBehaviour
         // set position and size
         r.localPosition = new Vector3(x, r.localPosition.y, r.localPosition.z);
         r.sizeDelta = new Vector2(width, height);
+        heightDetermined = height;
     }
 }
