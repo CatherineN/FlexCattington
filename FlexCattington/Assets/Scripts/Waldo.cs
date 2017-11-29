@@ -7,18 +7,18 @@ public class Waldo : MonoBehaviour
 {
 
     // Use this for initialization
-    //List to keep track of the life Icons
-    public List<GameObject> lifeIcons = new List<GameObject>();
-    //Counter to keep track of lifeicons
-    private int lifeCounter = 0;
+    //Keep track of score
+    public int score = 1000;
 	void Start ()
     {
-        
-	}
+        //Decrease score for every second the player spends on the screen
+        StartCoroutine("DecreaseScore");
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        
         //Debug.Log(lifeCounter);
 		if(Input.GetMouseButtonUp (0))
         {
@@ -27,12 +27,18 @@ public class Waldo : MonoBehaviour
                 Debug.Log("hi");
             if (hit.transform.tag == "Incorrect")
             {
-                lifeIcons[lifeCounter].gameObject.SetActive(false);
-                lifeCounter++;
+                hit.transform.tag = "Not Wrapping";
+                score -= 20;
             }
             else if (hit.transform.tag == "Correct")
                 SceneManager.LoadScene("CafeInterior");
 
         }
 	}
+    IEnumerator DecreaseScore()
+    {
+        score -= 1;
+        yield return new WaitForSeconds(1);
+        StartCoroutine("DecreaseScore");
+    }
 }

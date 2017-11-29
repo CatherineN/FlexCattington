@@ -30,11 +30,15 @@ public class MovePossibleDate : MonoBehaviour {
         //Convert to camera space
         screenPoint = Camera.main.WorldToViewportPoint(transform.position);
         //Screenwrap
-        if (screenPoint.x < 0 || screenPoint.x > 1)
+        if(transform.tag != "Not Wrapping")
         {
-            xPos = -xPos;
-            transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
+            if (screenPoint.x < 0 || screenPoint.x > 1)
+            {
+                xPos = -xPos;
+                transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
+            }
         }
+        
             
     }
 }
