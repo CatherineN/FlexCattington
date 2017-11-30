@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TitleCard : MonoBehaviour
 {
@@ -8,12 +9,12 @@ public class TitleCard : MonoBehaviour
     public float fadeTime; // time the card takes to fade out
 
     private float timer; // keeps track of time
-    private SpriteRenderer sr; // acess to the color of the sprite
+    private Image image; // acess to the color of the sprite
 
 	// Use this for initialization
 	void Start ()
     {
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        image = gameObject.GetComponent<Image>();
 	}
 	
 	// Update is called once per frame
@@ -35,9 +36,9 @@ public class TitleCard : MonoBehaviour
             // calculate the opacity
             float value = i / fadeTime;
 
-            Color c = sr.color; // get the color
+            Color c = image.color; // get the color
             c.a = i; // set the opacity
-            sr.color = c; // set the new color
+            image.color = c; // set the new color
             yield return null;
         }
 
