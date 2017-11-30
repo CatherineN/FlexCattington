@@ -32,8 +32,11 @@ public class TitleCard : MonoBehaviour
         // take as long as specified in fadeTime
         for(float i = fadeTime; i > 0; i -= Time.deltaTime)
         {
+            // calculate the opacity
+            float value = i / fadeTime;
+
             Color c = sr.color; // get the color
-            c.a = i; // 
+            c.a = i; // set the opacity
             sr.color = c; // set the new color
             yield return null;
         }
