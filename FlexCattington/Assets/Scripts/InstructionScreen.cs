@@ -44,7 +44,7 @@ public class InstructionScreen : MonoBehaviour
 
     public void Play()
     {
-        PlayerPrefs.SetInt("score", 100);
+        PlayerPrefs.SetFloat("score", 100);
         SceneManager.LoadScene("Waldo");
     }
 }

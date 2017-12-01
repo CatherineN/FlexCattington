@@ -8,11 +8,13 @@ public class Waldo : MonoBehaviour
 
     // Use this for initialization
     //Keep track of score
-    public int score = 1000;
+    public float score;
 	void Start ()
     {
+        score = PlayerPrefs.GetFloat("score");
         //Decrease score for every second the player spends on the screen
         StartCoroutine("DecreaseScore");
+
     }
 	
 	// Update is called once per frame
@@ -28,20 +30,24 @@ public class Waldo : MonoBehaviour
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-                Debug.Log("hi");
+            Debug.Log(hit.transform);
             if (hit.transform.tag == "Incorrect")
             {
                 hit.transform.tag = "Not Wrapping";
-                score -= 20;
+                score -= 5;
             }
             else if (hit.transform.tag == "Correct")
+            {
                 SceneManager.LoadScene("CafeInterior");
+                PlayerPrefs.SetFloat("score", score);
+            }
+                
 
         }
 	}
     IEnumerator DecreaseScore()
     {
-        score -= 1;
+        score -= 0.1f;
         yield return new WaitForSeconds(1);
         StartCoroutine("DecreaseScore");
     }
