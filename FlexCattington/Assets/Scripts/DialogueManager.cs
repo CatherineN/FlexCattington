@@ -16,10 +16,10 @@ public class DialogueManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        convo = new Dialogue();
+        convo = GetComponent<Dialogue>();
+        Debug.Log(convo.gameObject.name);
         ReadString(textFilePath);
         CreateConversation();
-        Debug.Log(convo.Nodes.ToString());
 	}
 	
 	// Update is called once per frame
@@ -43,23 +43,29 @@ public class DialogueManager : MonoBehaviour {
         foreach(string s in sections)
         {
             Debug.Log("Node number: " + s);
-            string[] responses = s.ToString().Split(new string[] {"!o"}, System.StringSplitOptions.None);//split up section of conversation into node and options
+            string[] responses = s.ToString().Split(new string[] {"!o", "!go", "!bo"}, System.StringSplitOptions.None);//split up section of conversation into node and options
             //first one will always be a node
-            GameObject node = Instantiate(TextNode);
+            GameObject node = Instantiate(TextNode, GameObject.Find("Canvas").transform);
             TextNode nodeS = node.GetComponent<TextNode>();
             
-            nodeS.Text = responses[0];
+            nodeS.text = responses[0];
             if (responses.Length >= 1)
             {
                 //set options for this node
                 for (int i = 1; i < responses.Length; i++)
                 {
-                    Debug.Log("response number: " + i);
-                    Debug.Log("parent node: " + node.name);
-                    //next however many are options to respond with
-                    nodeS.Options.Add(convo.AddOption(responses[i], node, null));//need to determine a way to point to destination even if it doesn't exist yet, ID?
+                    //determine if good, bad, or neutral and set relationship effect variable appropriately
+                    string[] score = responses[i].ToString().Split(new string[] { "!s" }, System.StringSplitOptions.None);//split up response based upon what is response and what is score
 
-                    //nodeS.Options.Add();//need to somehow get the Option gameobject
+                    Debug.Log("response number: " + i + ", response: " + score[0] + " score: " + score[1]);
+
+                    //next however many are options to respond with
+                    nodeS.Options.Add(convo.AddOption(score[0], node, null));//need to determine a way to point to destination even if it doesn't exist yet, ID?    
+
+                    //Debug.LogWarning(int.Parse(score[1]));
+                    //Debug.LogWarning(convo.nodes.Count - 1);
+                    //set value of score effect for the option
+                    nodeS.Options[nodeS.Options.Count-1].GetComponent<TextOption>().relationshipEffect = int.Parse(score[1]);//set the score effect for each option
                 }
             }
             

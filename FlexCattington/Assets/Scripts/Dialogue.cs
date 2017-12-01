@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour {
 
-    public List<GameObject> Nodes;
+    public List<GameObject> nodes;
     public GameObject optionPrefab;
 
 	// Use this for initialization
-	void Start () {
-        Nodes = new List<GameObject>();
+	void Awake () {
+        nodes = new List<GameObject>(); 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
+
+    //public List<GameObject> Nodes { get { return nodes; } set { nodes = value; } }
 
     public void AddNode(GameObject node)
     {
@@ -25,24 +27,22 @@ public class Dialogue : MonoBehaviour {
             return;
 
         //Add the node to the list of nodes
-        Nodes.Add(node);
+        nodes.Add(node);
 
         //Give the node an ID
-        node.GetComponent<TextNode>().ID = Nodes.IndexOf(node);
+        node.GetComponent<TextNode>().ID = nodes.IndexOf(node);
 
     }
 
     public GameObject AddOption(string text, GameObject parent, GameObject destination)
     {
-        Debug.Log(parent.name);
-        Debug.Log(Nodes.Count);
         //add destination node to list if it doesn't already exist
-        if (!Nodes.Contains(parent))
-            Nodes.Add(parent);
+        if (!nodes.Contains(parent))
+            nodes.Add(parent);
 
         //add destination node to list if it doesn't already exist
-        if (!Nodes.Contains(destination))
-            Nodes.Add(destination);
+        if (!nodes.Contains(destination))
+            nodes.Add(destination);
 
         GameObject option = Instantiate(optionPrefab);
         TextOption opt = option.GetComponent<TextOption>();

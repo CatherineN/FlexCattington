@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextNode : MonoBehaviour {
 
-    public string Text; //what npc says
+    public string text; //what npc says
 
     public int ID = -1; //identification of the node
 
@@ -17,8 +18,8 @@ public class TextNode : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        gameObject.GetComponentInChildren<Text>().text = text;
+    }
 
     
 }
