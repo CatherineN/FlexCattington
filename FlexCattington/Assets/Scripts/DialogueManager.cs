@@ -16,7 +16,10 @@ public class DialogueManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        convo = new Dialogue();
+        ReadString(textFilePath);
+        CreateConversation();
+        Debug.Log(convo.Nodes.ToString());
 	}
 	
 	// Update is called once per frame
@@ -36,24 +39,29 @@ public class DialogueManager : MonoBehaviour {
 
     private void CreateConversation()
     {
-        char[] separator = "!n".ToCharArray();
-        string[] sections = readIn.Split(separator); //split based upon nodes
+        string[] sections = readIn.Split(new string[] { "!n" }, System.StringSplitOptions.None); //split based upon nodes
         foreach(string s in sections)
         {
-            char[] separator1 = "!o".ToCharArray();
-            string[] responses = s.ToString().Split(separator1);//split up section of conversation into node and options
-            
+            Debug.Log("Node number: " + s);
+            string[] responses = s.ToString().Split(new string[] {"!o"}, System.StringSplitOptions.None);//split up section of conversation into node and options
             //first one will always be a node
             GameObject node = Instantiate(TextNode);
             TextNode nodeS = node.GetComponent<TextNode>();
+            
             nodeS.Text = responses[0];
-            //set options for this node
-            for (int i = 1; i < responses.Length; i++)
+            if (responses.Length >= 1)
             {
-                //next however many are options to respond with
+                //set options for this node
+                for (int i = 1; i < responses.Length; i++)
+                {
+                    Debug.Log("response number: " + i);
+                    Debug.Log("parent node: " + node.name);
+                    //next however many are options to respond with
+                    nodeS.Options.Add(convo.AddOption(responses[i], node, null));//need to determine a way to point to destination even if it doesn't exist yet, ID?
 
+                    //nodeS.Options.Add();//need to somehow get the Option gameobject
+                }
             }
-
             
             convo.AddNode(node);
         }

@@ -10,7 +10,7 @@ public class Dialogue : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        Nodes = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
@@ -32,8 +32,10 @@ public class Dialogue : MonoBehaviour {
 
     }
 
-    public void AddOption(string text, GameObject parent, GameObject destination)
+    public GameObject AddOption(string text, GameObject parent, GameObject destination)
     {
+        Debug.Log(parent.name);
+        Debug.Log(Nodes.Count);
         //add destination node to list if it doesn't already exist
         if (!Nodes.Contains(parent))
             Nodes.Add(parent);
@@ -51,7 +53,7 @@ public class Dialogue : MonoBehaviour {
             opt.text = text;
             opt.resultNode = destination;
         }
-        
+        return option;
     }
 
 }
