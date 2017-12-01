@@ -8,6 +8,8 @@ public class TextOption : MonoBehaviour {
     public string text;//text to reply/do in response to the npc's text
 
     public GameObject resultNode; //where this specific option leads
+    public int nodeID;//the ID/index of where the result node is located in the dialogue
+    //private TextNode textScript;//script for the node that this option leads to
 
     public int relationshipEffect;//how this option influences your score behind the scenes
 

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour {
 
-    public List<Text> Nodes;
+    public List<GameObject> Nodes;
+    public GameObject optionPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -24,26 +25,33 @@ public class Dialogue : MonoBehaviour {
             return;
 
         //Add the node to the list of nodes
-        //Nodes.Add(node);
+        Nodes.Add(node);
 
         //Give the node an ID
-        //node.GetComponent<TextNode>().ID = Nodes.IndexOf(node);
+        node.GetComponent<TextNode>().ID = Nodes.IndexOf(node);
 
     }
 
     public void AddOption(string text, GameObject parent, GameObject destination)
     {
         //add destination node to list if it doesn't already exist
-        /*if (!Nodes.Contains(parent))
+        if (!Nodes.Contains(parent))
             Nodes.Add(parent);
 
         //add destination node to list if it doesn't already exist
         if (!Nodes.Contains(destination))
-            Nodes.Add(destination);*/
+            Nodes.Add(destination);
 
-        TextOption opt;
+        GameObject option = Instantiate(optionPrefab);
+        TextOption opt = option.GetComponent<TextOption>();
 
-
+        //create an option object
+        if (destination == null)
+        {
+            opt.text = text;
+            opt.resultNode = destination;
+        }
+        
     }
 
 }
