@@ -23,7 +23,7 @@ public class TextOption : MonoBehaviour {
 
     public void UpdateScore()
     {
-        Debug.Log("score updating " + PlayerPrefs.GetInt("score"));
-        PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score") + relationshipEffect);
+        Debug.Log("score updating " + PlayerPrefs.GetFloat("score"));
+        PlayerPrefs.SetFloat("score", PlayerPrefs.GetFloat("score") + relationshipEffect);
     }
 }

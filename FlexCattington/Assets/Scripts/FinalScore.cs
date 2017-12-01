@@ -9,13 +9,13 @@ public class FinalScore : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        finalScore = PlayerPrefs.GetInt("score");
+        finalScore = (int)PlayerPrefs.GetFloat("score");
 
-        if(finalScore == 120)
+        if(finalScore >= 80)
         {
             GoodEnding();
         }
-        else if (finalScore >= 100)
+        else if (finalScore >= 50)
         {
             OkayEnding();
         }
