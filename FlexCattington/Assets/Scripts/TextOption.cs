@@ -20,8 +20,11 @@ public class TextOption : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (gameObject.tag != "Phone")
+            gameObject.GetComponentInChildren<Text>().text = text;
+        else
+            gameObject.GetComponent<PhoneTextMaker>().CalculateSpaceNeeded(text);
+    }
 
     public void UpdateScore()
     {

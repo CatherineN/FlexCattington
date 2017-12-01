@@ -44,7 +44,7 @@ public class Dialogue : MonoBehaviour {
         if (!nodes.Contains(destination))
             nodes.Add(destination);
 
-        GameObject option = Instantiate(optionPrefab);
+        GameObject option = Instantiate(optionPrefab, GameObject.Find("Canvas").transform);
         TextOption opt = option.GetComponent<TextOption>();
 
         //create an option object

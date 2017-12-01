@@ -12,13 +12,20 @@ public class TextNode : MonoBehaviour {
     public List<GameObject> Options; //ways you can respond to the text
 
 	// Use this for initialization
-	void Start () {
-		
-	}
+	void Awake () {
+        if (gameObject.tag != "Phone")
+            gameObject.GetComponentInChildren<Text>().text = text;
+        else
+            gameObject.GetComponent<PhoneTextMaker>().CalculateSpaceNeeded(text);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        gameObject.GetComponentInChildren<Text>().text = text;
+        if (gameObject.tag != "Phone")
+            gameObject.GetComponentInChildren<Text>().text = text;
+        else
+            gameObject.GetComponent<PhoneTextMaker>().CalculateSpaceNeeded(text);
+
     }
 
     
