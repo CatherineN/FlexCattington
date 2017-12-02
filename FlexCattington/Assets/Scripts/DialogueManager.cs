@@ -37,30 +37,31 @@ public class DialogueManager : MonoBehaviour {
         reader.Close();//close the stream when done
     }
 
-    private void CreateConversation()
+    private void CreateConversation()//last node has no options so need to resolve that
     {
         string[] sections = readIn.Split(new string[] { "!n" }, System.StringSplitOptions.None); //split based upon nodes
         foreach(string s in sections)
         {
             Debug.Log("Node number: " + s);
-            string[] responses = s.ToString().Split(new string[] {"!o", "!go", "!bo"}, System.StringSplitOptions.None);//split up section of conversation into node and options
+            string[] responses = s.ToString().Split(new string[] {"!o"}, System.StringSplitOptions.None);//split up section of conversation into node and options
             //first one will always be a node
             GameObject node = Instantiate(TextNode, GameObject.Find("Canvas").transform);
             TextNode nodeS = node.GetComponent<TextNode>();
             
             nodeS.text = responses[0];
-            if (responses.Length >= 1)
+            if (responses.Length > 1)
             {
                 //set options for this node
                 for (int i = 1; i < responses.Length; i++)
                 {
                     //determine if good, bad, or neutral and set relationship effect variable appropriately
-                    string[] score = responses[i].ToString().Split(new string[] { "!s" }, System.StringSplitOptions.None);//split up response based upon what is response and what is score
+                    string[] score = responses[i].ToString().Split(new string[] { "!s", "!i" }, System.StringSplitOptions.None);//split up response based upon what is response and what is score
 
-                    Debug.Log("response number: " + i + ", response: " + score[0] + " score: " + score[1]);
+                    Debug.Log("response number: " + i + ", response: " + score[0] + " score: " + score[1] + " result node index: " + score[2]);
 
                     //next however many are options to respond with
-                    nodeS.Options.Add(convo.AddOption(score[0], node, null));//need to determine a way to point to destination even if it doesn't exist yet, ID?    
+                    nodeS.Options.Add(convo.AddOption(score[0], node, int.Parse(score[2])));//used IDs as a way to point to destination even if it doesn't exist yet 
+                    //Debug.LogWarning(nodeS.Options.ToString());
 
                     //Debug.LogWarning(int.Parse(score[1]));
                     //Debug.LogWarning(convo.nodes.Count - 1);

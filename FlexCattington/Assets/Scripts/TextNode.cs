@@ -9,6 +9,8 @@ public class TextNode : MonoBehaviour {
 
     public int ID = -1; //identification of the node
 
+    public GameObject container; //will hold the text for the npc
+
     public List<GameObject> Options; //ways you can respond to the text
 
 	// Use this for initialization
@@ -26,6 +28,13 @@ public class TextNode : MonoBehaviour {
         else
             gameObject.GetComponent<PhoneTextMaker>().CalculateSpaceNeeded(text);
 
+    }
+
+    public void SetNPCText()
+    {
+        //update current text node to reflect this node's values
+        container.GetComponent<TextNode>().text = text;
+        container.GetComponent<TextNode>().Options = Options;
     }
 
     

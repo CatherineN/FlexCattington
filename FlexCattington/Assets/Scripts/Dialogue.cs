@@ -31,27 +31,25 @@ public class Dialogue : MonoBehaviour {
 
         //Give the node an ID
         node.GetComponent<TextNode>().ID = nodes.IndexOf(node);
+        //node.GetComponent<TextNode>().container = GameObject.Find("NPC Talk");
 
     }
 
-    public GameObject AddOption(string text, GameObject parent, GameObject destination)
+    public GameObject AddOption(string text, GameObject parent, int destinationIndex = -1)
     {
-        //add destination node to list if it doesn't already exist
-        if (!nodes.Contains(parent))
-            nodes.Add(parent);
-
-        //add destination node to list if it doesn't already exist
-        if (!nodes.Contains(destination))
-            nodes.Add(destination);
+        ////add destination node to list if it doesn't already exist -- was messing up due to the parent node being added after the options were added
+        //if (!nodes.Contains(parent))
+        //    nodes.Add(parent);
 
         GameObject option = Instantiate(optionPrefab, GameObject.Find("Canvas").transform);
         TextOption opt = option.GetComponent<TextOption>();
 
         //create an option object
-        if (destination == null)
+        if (destinationIndex != -1)
         {
             opt.text = text;
-            opt.resultNode = destination;
+            opt.nodeID = destinationIndex;
+            //opt.resultNode = nodes[opt.nodeID];
         }
         return option;
     }

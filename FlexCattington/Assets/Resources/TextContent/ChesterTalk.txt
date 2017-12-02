@@ -1,24 +1,33 @@
 As your charge and Dave settle down with their drinks, they stumble through flustered introductions and small talk. The two talk about jobs, hobbies, and the like. Dave starts to talk about his dogs at length, and your charge seems to start to zone out. Oh no! Those all-nighters must have put a toll on your charge! They seem to trying to focus but are fading fast.  
 
-Suddenly, your charge tries to make conversation with Dave about his dogs. They are struggling with remembering the names of Dave's dog, and that's not good! It's time to intercept and help jog your charge's memory!
+Suddenly, your charge tries to make conversation with Dave about his dogs. They are struggling with remembering the names of Dave's dog, and that's not good! It's time to intercept and help jog your charge's memory! 
 
 
-!oClover and Lenon !s 10
-!oLenon and Ducky !s 0
-!oDusky and Lemon !s -10
+!oClover and Lenon !s 10 !i 2
+!oLenon and Ducky !s 0 !i 1
+!oDusky and Lemon !s -10 !i 3
 
-!nDave smiles sheepishly and softly corrects the name of one of the dogs your charge went with. Clover, not Ducky, but it was a simple mistake and you did get one right. Mild conversation continues, and the two talk more at length about their work. Dave talks about his job and your charge goes to make a comment on Dave's job. But were they listening?! With the date going fairly well, you don't want your charge to mess this next part up!
+!nDave smiles sheepishly and softly corrects the name of one of the dogs your charge went with. Clover, not Ducky, but it was a simple mistake and you did get one right. Mild conversation continues, and the two talk more at length about their work. Dave talks about his job and your charge goes to make a comment on Dave's job. But were they listening?! With the date going fairly well, you don't want your charge to mess this next part up! 
 
-!nDave beams when he hears your charge say the correct names. Success! Laid-back conversation continues, and the two start to talk more at length about their work. Dave talks about his job and your charge goes to make a comment on Dave's job. But were they listening?! With the date going well, you don't want your charge to mess this next part up and ruin the mood!
+!o"Your job sounds hard, but keep pulling through and do your best!" !s 0 !i 4
+!o"Sounds really tough, I hope you can switch your job soon and do something you're passionate about. I believe in you!"  !s 10 !i 5
+!o"Well, you gotta do what you gotta do, right?" !s -10 !i 6
 
-!nDave smiles awkwardly and softly corrects the name of the dogs your charge went with. Clover and Lenon, Dusky and Lemon. Boy, you sure botched that one. Conversation continues, however there's a bit of an awkward atmosphere now, but the two begin to talk more at length about their work. Dave talks about his job and your charge goes to make a comment on Dave's job. But were they listening?! With the date going poorly, you really don’t want your charge to mess this next part up!
+!nDave beams when he hears your charge say the correct names. Success! Laid-back conversation continues, and the two start to talk more at length about their work. Dave talks about his job and your charge goes to make a comment on Dave's job. But were they listening?! With the date going well, you don't want your charge to mess this next part up and ruin the mood! 
 
-!o"Your job sounds hard, but keep pulling through and do your best!" !s 0
-!o"Sounds really tough, I hope you can switch your job soon and do something you're passionate about. I believe in you!"  !s 10
-!o"Well, you gotta do what you gotta do, right?" !s -10
+!o"Your job sounds hard, but keep pulling through and do your best!" !s 0 !i 4
+!o"Sounds really tough, I hope you can switch your job soon and do something you're passionate about. I believe in you!"  !s 10 !i 5
+!o"Well, you gotta do what you gotta do, right?" !s -10 !i 6
 
-!nDave sighs a little, but smiles nonetheless. It seems he wasn't looking for a comment quite like that. Just a little trip up however. The rest of the date goes rather smoothly, and you breathe a small sigh of relief at that.
 
-!nDave takes the words of encouragement with a "thank you" and "I hope so as well." The date continues, and both your charge and Dave seem so absorbed in what each other's saying that the two of them almost forget it's time to wrap it up and leave to take care of other business! You smile happily that the two seem to be getting along swimmingly.
+!nDave smiles awkwardly and softly corrects the name of the dogs your charge went with. Clover and Lenon, Dusky and Lemon. Boy, you sure botched that one. Conversation continues, however there's a bit of an awkward atmosphere now, but the two begin to talk more at length about their work. Dave talks about his job and your charge goes to make a comment on Dave's job. But were they listening?! With the date going poorly, you really don’t want your charge to mess this next part up! 
 
-!nDave frowns...well that, that is not a good sign. Looks like you really messed up. It takes a bit to get the conversation going, but Dave seems a bit down in the dumps, even with all that tie dye he's wearing. You bite your nails, wondering if this will end up working out...
+!o"Your job sounds hard, but keep pulling through and do your best!" !s 0 !i 4
+!o"Sounds really tough, I hope you can switch your job soon and do something you're passionate about. I believe in you!"  !s 10 !i 5
+!o"Well, you gotta do what you gotta do, right?" !s -10 !i 6
+
+!nDave sighs a little, but smiles nonetheless. It seems he wasn't looking for a comment quite like that. Just a little trip up however. The rest of the date goes rather smoothly, and you breathe a small sigh of relief at that. 
+
+!nDave takes the words of encouragement with a "thank you" and "I hope so as well." The date continues, and both your charge and Dave seem so absorbed in what each other's saying that the two of them almost forget it's time to wrap it up and leave to take care of other business! You smile happily that the two seem to be getting along swimmingly. 
+
+!nDave frowns...well that, that is not a good sign. Looks like you really messed up. It takes a bit to get the conversation going, but Dave seems a bit down in the dumps, even with all that tie dye he's wearing. You bite your nails, wondering if this will end up working out... 
