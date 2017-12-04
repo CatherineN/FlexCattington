@@ -45,9 +45,9 @@ public class WaiterScript : MonoBehaviour {
     void CheckForTransition()
     {
         if (!correctCoffee && gameObject.transform.position.x < -1.7)
-            wrong.SetActive(true);
+            StartCoroutine(ShowUnhappyFlex(wrong.transform.position));
         else if (correctCoffee && gameObject.transform.position.x < -1.7)
-            right.SetActive(true);
+            StartCoroutine(ShowHappyFlex(right.transform.position));
         if (gameObject.transform.position.x < -13)
         {
             CoffeeScore();
@@ -63,5 +63,23 @@ public class WaiterScript : MonoBehaviour {
         else
             score += 15;
 
+    }
+
+    IEnumerator ShowHappyFlex(Vector3 start)
+    {
+        for (float time = 0; time < 0.5f; time += Time.deltaTime)
+        {
+            right.transform.position = Vector3.Lerp(start, new Vector3(3.63f, -3.0f, -2.6f), time / 0.5f);
+            yield return null;
+        }
+    }
+
+    IEnumerator ShowUnhappyFlex(Vector3 start)
+    {
+        for (float time = 0; time < 0.5f; time += Time.deltaTime)
+        {
+            wrong.transform.position = Vector3.Lerp(start, new Vector3(3.63f, -3.0f, -2.6f), time / 0.5f);
+            yield return null;
+        }
     }
 }
