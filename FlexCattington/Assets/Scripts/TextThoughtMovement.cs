@@ -46,6 +46,8 @@ public class TextThoughtMovement : MonoBehaviour
         r.localPosition = Vector3.Lerp(start, target, timeMapped);
 
         timer += Time.deltaTime;
+
+        
 	}
 
     void FindNewPosition()
@@ -62,5 +64,15 @@ public class TextThoughtMovement : MonoBehaviour
     public void SetTime(float time)
     {
         timer = time;
+    }
+
+    public void OnMouseEnter()
+    {
+        gameObject.GetComponent<Outline>().enabled = true;
+    }
+
+    public void OnMouseExit()
+    {
+        gameObject.GetComponent<Outline>().enabled = false; ;
     }
 }
