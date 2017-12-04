@@ -11,6 +11,10 @@ public class TextOption : MonoBehaviour {
     public int nodeID;//the ID/index of where the result node is located in the dialogue
     //private TextNode textScript;//script for the node that this option leads to
 
+    public Sprite n;
+    public Sprite g;
+    public Sprite b;
+
     public int relationshipEffect;//how this option influences your score behind the scenes
 
     void Start()
@@ -50,6 +54,15 @@ public class TextOption : MonoBehaviour {
     {
         Debug.Log("score updating " + PlayerPrefs.GetFloat("score"));
         PlayerPrefs.SetFloat("score", PlayerPrefs.GetFloat("score") + relationshipEffect);
+        switch (relationshipEffect)
+        {
+            case -10: GameObject.Find("Chester J. Prick reactions").GetComponent<Image>().sprite = b;
+                break;
+            case 0: GameObject.Find("Chester J. Prick reactions").GetComponent<Image>().sprite = n;
+                break;
+            case 10: GameObject.Find("Chester J. Prick reactions").GetComponent<Image>().sprite = g;
+                break;
+        }
     }
 
     /// <summary>
