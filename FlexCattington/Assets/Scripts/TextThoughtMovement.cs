@@ -10,18 +10,21 @@ public class TextThoughtMovement : MonoBehaviour
     // Y = 300
 
     public float duration;
+    private GameObject manager;
 
     private float timer;
     private CanvasGroup image; // acess to the color of the sprite
     private Vector3 target;
     private Vector3 start;
     private RectTransform r;
+    public bool offscreen = false;
 
     // Use this for initialization
     void Start ()
     {
         image = gameObject.GetComponent<CanvasGroup>();
         r = gameObject.GetComponent<RectTransform>();
+        manager = GameObject.Find("ScrollParent");
         FindNewPosition();
         FindNewTarget();
     }
@@ -29,6 +32,11 @@ public class TextThoughtMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if(offscreen)
+        {
+            r.localPosition = new Vector3(10000f, 0, 0);
+            return;
+        }
         if (timer >= duration)
         {
             timer = 0.0f;
@@ -74,5 +82,19 @@ public class TextThoughtMovement : MonoBehaviour
     public void OnMouseExit()
     {
         gameObject.GetComponent<Outline>().enabled = false; ;
+    }
+
+    public void OnMouseDown()
+    {
+        PlayerPrefs.SetFloat("score", PlayerPrefs.GetFloat("score") + GetComponent<TextOption>().relationshipEffect);
+        manager.GetComponent<TextMessageManager>().AddMessage(GetComponent<TextOption>().text);
+        GameObject[] thoughts = GameObject.FindGameObjectsWithTag("Thought");
+        for (int i = 0; i < thoughts.Length; i++)
+        {
+            thoughts[i].GetComponent<TextThoughtMovement>().offscreen = true;
+        }
+
+        StartCoroutine(manager.GetComponent<TextMessageManager>().Typing(GetComponent<TextOption>()));
+        
     }
 }

@@ -30,7 +30,7 @@ public class PhoneTextMaker : MonoBehaviour
 
         r.sizeDelta = new Vector2(30, 34);
 
-        CalculateSpaceNeeded("Sup y'all, here be some example text generation. Oh look, another sentence");
+        //CalculateSpaceNeeded("Sup y'all, here be some example text generation. Oh look, another sentence");
 	}
 
     public void CalculateSpaceNeeded(string text)

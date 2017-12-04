@@ -42,41 +42,14 @@ public class TextOption : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         //Debug.Log("ID: " + nodeID);
-        if (nodeID != -1)
+        if (nodeID != -1 && isText == false)
             resultNode = GameObject.Find("SceneManager").GetComponent<Dialogue>().nodes[nodeID];
         else
             resultNode = null;
         //Debug.LogWarning(gameObject.name + "'s result: " + resultNode.GetComponent<TextNode>().text);
         if (isText == false)
             gameObject.GetComponentInChildren<Text>().text = text;
-        else
-        {
-            gameObject.GetComponent<PhoneTextMaker>().CalculateSpaceNeeded(text);
-            if (Input.GetMouseButtonUp(0))
-            {
-                // don't analyze clicks when the title card is up
-                if (GameObject.Find("TitleCard") != null)
-                    return;
-
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-                Debug.Log(hit.transform);
-                if (hit.transform.tag == "Incorrect")
-                {
-                    //hit.transform.tag = "Not Wrapping";
-                    //score -= 5;
-                    //StartCoroutine(ShowFlex(wrong.transform.position));
-
-                }
-                else if (hit.transform.tag == "Correct")
-                {
-                    //SceneManager.LoadScene("CafeInterior");
-                    //PlayerPrefs.SetFloat("score", score);
-                }
-
-
-            }
-        }
+        
             
     }
 
