@@ -9,12 +9,16 @@ public class Waldo : MonoBehaviour
     // Use this for initialization
     //Keep track of score
     public float score;
+    int counter;
+    GameObject wrong;
 	void Start ()
     {
+        wrong = GameObject.Find("WrongAnswer");
+        wrong.SetActive(false);
         score = PlayerPrefs.GetFloat("score");
         //Decrease score for every second the player spends on the screen
         StartCoroutine("DecreaseScore");
-
+        counter = 0;
     }
 	
 	// Update is called once per frame
@@ -35,6 +39,9 @@ public class Waldo : MonoBehaviour
             {
                 hit.transform.tag = "Not Wrapping";
                 score -= 5;
+                wrong.SetActive(true);
+                counter++;
+
             }
             else if (hit.transform.tag == "Correct")
             {
@@ -43,6 +50,13 @@ public class Waldo : MonoBehaviour
             }
                 
 
+        }
+        if (counter >= 1)
+            counter++;
+        if(counter==20)
+        {
+            counter = 0;
+            wrong.SetActive(false);
         }
 	}
     IEnumerator DecreaseScore()

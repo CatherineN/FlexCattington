@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class WaiterScript : MonoBehaviour {
 
     public bool correctCoffee;
+    public float score;
+    public GameObject wrong;
+    public GameObject right;
     public enum States
     {
         waiterApproach,
@@ -22,7 +25,8 @@ public class WaiterScript : MonoBehaviour {
         waiterTrans = gameObject.transform;
         gameState = States.waiterApproach;
         correctCoffee = false;
-	}
+        score = PlayerPrefs.GetFloat("score");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,14 +44,24 @@ public class WaiterScript : MonoBehaviour {
     }
     void CheckForTransition()
     {
+        if (!correctCoffee && gameObject.transform.position.x < -1.7)
+            wrong.SetActive(true);
+        else if (correctCoffee && gameObject.transform.position.x < -1.7)
+            right.SetActive(true);
         if (gameObject.transform.position.x < -13)
         {
+            CoffeeScore();
+            PlayerPrefs.SetFloat("score", score);
             SceneManager.LoadScene("Conversation");
         }
     }
 
     public void CoffeeScore()
     {
+        if (!correctCoffee)
+            score -= 10;
+        else
+            score += 15;
 
     }
 }

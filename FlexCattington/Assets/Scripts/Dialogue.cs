@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour {
 
+    public float score;
     public List<GameObject> nodes;
     public GameObject optionPrefab;
 
 	// Use this for initialization
 	void Awake () {
+        score = PlayerPrefs.GetFloat("score");
         nodes = new List<GameObject>(); 
 	}
 	

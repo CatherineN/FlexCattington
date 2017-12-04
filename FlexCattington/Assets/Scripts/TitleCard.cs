@@ -37,7 +37,7 @@ public class TitleCard : MonoBehaviour
             float value = i / fadeTime;
 
             Color c = image.color; // get the color
-            c.a = i; // set the opacity
+            c.a = value; // set the opacity
             image.color = c; // set the new color
             yield return null;
         }

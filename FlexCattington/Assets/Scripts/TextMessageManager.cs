@@ -7,6 +7,8 @@ public class TextMessageManager : MonoBehaviour
     public GameObject parent; // script this is attatched to
     public GameObject outgoing; // outgoing (blue) message prefab
     public GameObject incomimng; // incoming (grey) message prefab
+    public GameObject thought; // potential message
+    public Transform canvas;
 
     private float totalHeight = 0.0f; // total height occupied by messages and buffer
     private float heightBuffer = 5.0f; // space between texts
@@ -18,7 +20,7 @@ public class TextMessageManager : MonoBehaviour
     {
         // save the top
         top = parent.transform.position.y;
-
+        /*
         // make 10 messages
 		for(int i = 0; i < 5; i++)
         {
@@ -43,7 +45,16 @@ public class TextMessageManager : MonoBehaviour
 
             // add this message's height to totalHeight
             totalHeight += maker2.heightDetermined + heightBuffer;
+        }*/
+
+        for(int i = 0; i < 5; i++)
+        {
+            GameObject test = Instantiate(thought, canvas);
+            test.GetComponent<PhoneTextMaker>().CalculateSpaceNeeded("Testing the text");
+            test.GetComponent<RectTransform>().localScale = new Vector3(2.0f, 2.0f, 2.0f);
+            test.GetComponent<TextThoughtMovement>().SetTime(Random.Range(0, 6));
         }
+        
 	}
 	
 	// Update is called once per frame
