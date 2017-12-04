@@ -58,6 +58,7 @@ public class DialogueManager : MonoBehaviour {
                     string[] score = responses[i].ToString().Split(new string[] { "!s", "!i" }, System.StringSplitOptions.None);//split up response based upon what is response and what is score
 
                     Debug.Log("response number: " + i + ", response: " + score[0] + " score: " + score[1] + " result node index: " + score[2]);
+                    Debug.LogWarning(int.Parse(score[1]));
 
                     //next however many are options to respond with
                     nodeS.Options.Add(convo.AddOption(score[0], node, int.Parse(score[2])));//used IDs as a way to point to destination even if it doesn't exist yet 
