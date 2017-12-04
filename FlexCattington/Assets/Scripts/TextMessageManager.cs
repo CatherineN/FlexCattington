@@ -75,4 +75,6 @@ public class TextMessageManager : MonoBehaviour
                 parent.transform.position = new Vector3(parent.transform.position.x, top + totalHeight - heightMax, parent.transform.position.z);
         }
 	}
+
+    
 }
