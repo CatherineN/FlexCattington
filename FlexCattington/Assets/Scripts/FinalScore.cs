@@ -23,12 +23,26 @@ public class FinalScore : MonoBehaviour {
         {
             BadEnding();
         }
+        CleanUp();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+    }
+
+    void CleanUp()
+    {
+        GameObject.Find("Charge's speech bubble").SetActive(false);
+        GameObject.Find("Option 2").GetComponent<TextOption>().text = "Head home";
+
+        //clicking option 2 which now says Head home, will take you to the grade screen
+        Button b = GameObject.Find("Option 2").GetComponent<Button>();
+        if(finalScore >= 80)
+            b.onClick.AddListener(() => SceneManager.LoadScene("PhoneConvo"));
+        else
+            b.onClick.AddListener(() => SceneManager.LoadScene("Grade"));
+    }
 
     /// <summary>
     /// Smooth moves there bud
