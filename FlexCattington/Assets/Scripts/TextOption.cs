@@ -7,6 +7,8 @@ public class TextOption : MonoBehaviour {
 
     public string text;//text to reply/do in response to the npc's text
 
+    public bool isText;
+
     public GameObject resultNode; //where this specific option leads
     public int nodeID;//the ID/index of where the result node is located in the dialogue
     //private TextNode textScript;//script for the node that this option leads to
@@ -19,6 +21,7 @@ public class TextOption : MonoBehaviour {
 
     void Start()
     {
+        if(isText == false)
         StartCoroutine(LateStart(.00001f));
     }
 
@@ -44,23 +47,56 @@ public class TextOption : MonoBehaviour {
         else
             resultNode = null;
         //Debug.LogWarning(gameObject.name + "'s result: " + resultNode.GetComponent<TextNode>().text);
-        if (gameObject.tag != "Phone")
+        if (isText == false)
             gameObject.GetComponentInChildren<Text>().text = text;
         else
+        {
             gameObject.GetComponent<PhoneTextMaker>().CalculateSpaceNeeded(text);
+            if (Input.GetMouseButtonUp(0))
+            {
+                // don't analyze clicks when the title card is up
+                if (GameObject.Find("TitleCard") != null)
+                    return;
+
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+                Debug.Log(hit.transform);
+                if (hit.transform.tag == "Incorrect")
+                {
+                    //hit.transform.tag = "Not Wrapping";
+                    //score -= 5;
+                    //StartCoroutine(ShowFlex(wrong.transform.position));
+
+                }
+                else if (hit.transform.tag == "Correct")
+                {
+                    //SceneManager.LoadScene("CafeInterior");
+                    //PlayerPrefs.SetFloat("score", score);
+                }
+
+
+            }
+        }
+            
     }
 
     public void UpdateScore()
     {
         PlayerPrefs.SetFloat("score", PlayerPrefs.GetFloat("score") + relationshipEffect);
-        switch (relationshipEffect)
+        if(isText == false)
         {
-            case -10: GameObject.Find("Chester J. Prick reactions").GetComponent<Image>().sprite = b;
-                break;
-            case 0: GameObject.Find("Chester J. Prick reactions").GetComponent<Image>().sprite = n;
-                break;
-            case 10: GameObject.Find("Chester J. Prick reactions").GetComponent<Image>().sprite = g;
-                break;
+            switch (relationshipEffect)
+            {
+                case -10:
+                    GameObject.Find("Chester J. Prick reactions").GetComponent<Image>().sprite = b;
+                    break;
+                case 0:
+                    GameObject.Find("Chester J. Prick reactions").GetComponent<Image>().sprite = n;
+                    break;
+                case 10:
+                    GameObject.Find("Chester J. Prick reactions").GetComponent<Image>().sprite = g;
+                    break;
+            }
         }
     }
 
