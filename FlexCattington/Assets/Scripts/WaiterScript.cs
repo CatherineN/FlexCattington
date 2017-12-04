@@ -45,4 +45,9 @@ public class WaiterScript : MonoBehaviour {
             SceneManager.LoadScene("Conversation");
         }
     }
+
+    public void CoffeeScore()
+    {
+
+    }
 }
