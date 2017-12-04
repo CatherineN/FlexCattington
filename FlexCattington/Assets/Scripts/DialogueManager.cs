@@ -69,8 +69,14 @@ public class DialogueManager : MonoBehaviour {
                     nodeS.Options[nodeS.Options.Count-1].GetComponent<TextOption>().relationshipEffect = int.Parse(score[1]);//set the score effect for each option
                 }
             }
+            else
+            {
+                //create end option
+                nodeS.Options.Add(convo.AddOption("Finish Coffee", node));//used IDs as a way to point to destination even if it doesn't exist yet 
+            }
             
             convo.AddNode(node);
+            Debug.LogWarning("triggered");
         }
     }
 }

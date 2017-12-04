@@ -23,7 +23,7 @@ public class TextNode : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (gameObject.tag != "Phone")
+        if (gameObject.tag != "Phone" && ID != -1)
             gameObject.GetComponentInChildren<Text>().text = text;
         else
             gameObject.GetComponent<PhoneTextMaker>().CalculateSpaceNeeded(text);

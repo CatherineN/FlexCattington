@@ -13,15 +13,32 @@ public class TextOption : MonoBehaviour {
 
     public int relationshipEffect;//how this option influences your score behind the scenes
 
-    // Use this for initialization
-    void Start () {
-        gameObject.GetComponentInChildren<Text>().text = text;
+    void Start()
+    {
+        StartCoroutine(LateStart(.00001f));
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Use this for initialization
+    void Initialize () {
+        gameObject.GetComponentInChildren<Text>().text = text;
+        resultNode = GameObject.Find("SceneManager").GetComponent<Dialogue>().nodes[0];
+        ChangeNode();
+    }
+
+    //has to be a late start so that the list of nodes is populated before the method is called
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Initialize();
+    }
+
+    // Update is called once per frame
+    void Update () {
         //Debug.Log("ID: " + nodeID);
-        resultNode = GameObject.Find("SceneManager").GetComponent<Dialogue>().nodes[nodeID];
+        if (nodeID != -1)
+            resultNode = GameObject.Find("SceneManager").GetComponent<Dialogue>().nodes[nodeID];
+        else
+            resultNode = null;
         //Debug.LogWarning(gameObject.name + "'s result: " + resultNode.GetComponent<TextNode>().text);
         if (gameObject.tag != "Phone")
             gameObject.GetComponentInChildren<Text>().text = text;
@@ -41,6 +58,11 @@ public class TextOption : MonoBehaviour {
     /// </summary>
     public void ChangeNode()
     {
+        if (resultNode == null)
+        {
+            GameObject.Find("Chester").AddComponent<FinalScore>();
+            return;
+        }
         resultNode.GetComponent<TextNode>().SetNPCText();
         UpdateOptions();
     }
@@ -50,17 +72,29 @@ public class TextOption : MonoBehaviour {
     /// </summary>
     private void UpdateOptions()
     {
-        GameObject.Find("Option 1").GetComponent<TextOption>().nodeID = resultNode.GetComponent<TextNode>().Options[0].GetComponent<TextOption>().nodeID;
-        GameObject.Find("Option 1").GetComponent<TextOption>().text = resultNode.GetComponent<TextNode>().Options[0].GetComponent<TextOption>().text;
-        GameObject.Find("Option 1").GetComponent<TextOption>().relationshipEffect = resultNode.GetComponent<TextNode>().Options[0].GetComponent<TextOption>().relationshipEffect;
+        if(resultNode.GetComponent<TextNode>().Options.Count > 1)
+        {
+            GameObject.Find("Option 1").GetComponent<TextOption>().nodeID = resultNode.GetComponent<TextNode>().Options[0].GetComponent<TextOption>().nodeID;
+            GameObject.Find("Option 1").GetComponent<TextOption>().text = resultNode.GetComponent<TextNode>().Options[0].GetComponent<TextOption>().text;
+            GameObject.Find("Option 1").GetComponent<TextOption>().relationshipEffect = resultNode.GetComponent<TextNode>().Options[0].GetComponent<TextOption>().relationshipEffect;
 
-        GameObject.Find("Option 2").GetComponent<TextOption>().nodeID = resultNode.GetComponent<TextNode>().Options[1].GetComponent<TextOption>().nodeID;
-        GameObject.Find("Option 2").GetComponent<TextOption>().text = resultNode.GetComponent<TextNode>().Options[1].GetComponent<TextOption>().text;
-        GameObject.Find("Option 2").GetComponent<TextOption>().relationshipEffect = resultNode.GetComponent<TextNode>().Options[1].GetComponent<TextOption>().relationshipEffect;
+            GameObject.Find("Option 2").GetComponent<TextOption>().nodeID = resultNode.GetComponent<TextNode>().Options[1].GetComponent<TextOption>().nodeID;
+            GameObject.Find("Option 2").GetComponent<TextOption>().text = resultNode.GetComponent<TextNode>().Options[1].GetComponent<TextOption>().text;
+            GameObject.Find("Option 2").GetComponent<TextOption>().relationshipEffect = resultNode.GetComponent<TextNode>().Options[1].GetComponent<TextOption>().relationshipEffect;
 
-        GameObject.Find("Option 3").GetComponent<TextOption>().nodeID = resultNode.GetComponent<TextNode>().Options[2].GetComponent<TextOption>().nodeID;
-        GameObject.Find("Option 3").GetComponent<TextOption>().text = resultNode.GetComponent<TextNode>().Options[2].GetComponent<TextOption>().text;
-        GameObject.Find("Option 3").GetComponent<TextOption>().relationshipEffect = resultNode.GetComponent<TextNode>().Options[2].GetComponent<TextOption>().relationshipEffect;
+            GameObject.Find("Option 3").GetComponent<TextOption>().nodeID = resultNode.GetComponent<TextNode>().Options[2].GetComponent<TextOption>().nodeID;
+            GameObject.Find("Option 3").GetComponent<TextOption>().text = resultNode.GetComponent<TextNode>().Options[2].GetComponent<TextOption>().text;
+            GameObject.Find("Option 3").GetComponent<TextOption>().relationshipEffect = resultNode.GetComponent<TextNode>().Options[2].GetComponent<TextOption>().relationshipEffect;
+        }
+        else if (resultNode.GetComponent<TextNode>().Options.Count == 1)
+        {
+            GameObject.Find("Option 1").SetActive(false);
+            GameObject.Find("Option 3").SetActive(false);
+            GameObject.Find("Option 2").GetComponent<TextOption>().text = "Finish your coffee";
+            GameObject.Find("Option 2").GetComponent<TextOption>().nodeID = -1;
+            GameObject.Find("Option 2").GetComponent<TextOption>().relationshipEffect = 0;
+        }
+        
     }
 
     /// <summary>
